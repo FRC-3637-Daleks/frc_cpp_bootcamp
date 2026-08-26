@@ -7,7 +7,8 @@
 #include <frc2/command/Commands.h>
 
 RobotContainer::RobotContainer()
-  : m_pilot{1}
+  : m_pilot{0}
+  , m_operator{1}
  {
   ConfigureBindings();
 }

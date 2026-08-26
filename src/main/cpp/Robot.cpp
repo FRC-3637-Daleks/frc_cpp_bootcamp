@@ -6,6 +6,8 @@
 
 #include <frc2/command/CommandScheduler.h>
 
+#include "Exercises.h"
+
 Robot::Robot() {}
 
 void Robot::RobotPeriodic() {
@@ -29,9 +31,10 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-  const auto fwd = -1*m_container.m_pilot.GetLeftY();
-  const auto rot = m_container.m_pilot.GetRightX();
-  m_container.m_drive.SetSpeeds((fwd + rot)/2, (fwd - rot)/2);
+  if (m_container.m_pilot.IsConnected())
+    exercise_0::ArcadeDrive(m_container.m_drive, m_container.m_pilot);
+  else if (m_container.m_operator.IsConnected())
+    exercise_0::TankDrive(m_container.m_drive, m_container.m_operator);
 }
 
 void Robot::TeleopExit() {}

@@ -15,7 +15,7 @@ public:
 
 public:
   Drivebase m_drive;
-  frc2::CommandXboxController m_pilot;
+  frc2::CommandXboxController m_pilot, m_operator;
 
 private:
   void ConfigureBindings();
