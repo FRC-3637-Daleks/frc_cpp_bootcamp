@@ -31,10 +31,15 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
+  exercise_1::DetectZone(m_container.m_drive, m_container.m_leds);
+  exercise_1::AlignTrench(m_container.m_drive, m_container.m_leds);
+  
   if (m_container.m_pilot.IsConnected())
     exercise_0::ArcadeDrive(m_container.m_drive, m_container.m_pilot);
-  else if (m_container.m_operator.IsConnected())
+  else if (m_container.m_operator.IsConnected()) {
     exercise_0::TankDrive(m_container.m_drive, m_container.m_operator);
+    exercise_1::TestLEDs(m_container.m_operator, m_container.m_leds);
+  }
 }
 
 void Robot::TeleopExit() {}
