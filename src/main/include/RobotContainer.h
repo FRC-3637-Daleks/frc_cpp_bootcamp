@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Drivebase.h"
+#include "LEDs.h"
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
@@ -15,6 +16,7 @@ public:
 
 public:
   Drivebase m_drive;
+  LEDs m_leds;
   frc2::CommandXboxController m_pilot, m_operator;
 
 private:
