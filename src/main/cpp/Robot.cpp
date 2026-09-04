@@ -31,10 +31,19 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-  if (m_container.m_pilot.IsConnected())
-    exercise_0::ArcadeDrive(m_container.m_drive, m_container.m_pilot);
-  else if (m_container.m_operator.IsConnected())
-    exercise_0::TankDrive(m_container.m_drive, m_container.m_operator);
+  switch (m_container.m_selectedDrive) {
+    case DriveMethod::Tank:
+      exercise_0::TankDrive(m_container.m_drive, m_container.m_pilot);
+      break;
+    case DriveMethod::TurnInPlace:
+      exercise_0::TurnInPlaceDrive(m_container.m_drive, m_container.m_pilot);
+      break;
+    case DriveMethod::Arcade:
+      exercise_0::ArcadeDrive(m_container.m_drive, m_container.m_pilot);
+      break;
+    default:
+      fmt::println("Unsupported Drive Method Selected!");
+  }
 }
 
 void Robot::TeleopExit() {}
