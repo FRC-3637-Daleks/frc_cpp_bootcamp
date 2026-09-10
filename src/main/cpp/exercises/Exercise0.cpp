@@ -21,8 +21,8 @@ namespace exercise_0 {
  * To turn in place, the pilot must drive one side forward and the other backward.
  */
 void TankDrive(Drivebase &drive, frc2::CommandXboxController &controller) {
-  float leftStick = controller.GetLeftY();
-  float rightStick = controller.GetRightY();
+  float leftStick = -controller.GetLeftY();  // Down is positive for some reason, so we invert the value
+  float rightStick = -controller.GetRightY();
 
   drive.SetSpeeds(leftStick, rightStick);
 }
